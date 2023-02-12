@@ -49,27 +49,27 @@ stages:
      - job: apply
        steps:
          - task: TerraformInstaller@0
-          displayName: tfinstall
-          inputs:
+           displayName: tfinstall
+           inputs:
             terraformVersion: 'latest'
-        - task: TerraformTaskV3@3
-          displayName: init
-          inputs:
-            provider: 'azurerm'
-            command: 'init'
-            backendServiceArm: 'Visual Studio Enterprise Subscription-new(3)(8512a432-b466-4c66-8947-7f750e26c92d)'
-            backendAzureRmResourceGroupName: '$(bkstrgrg)'
-            backendAzureRmStorageAccountName: '$(bkstrg)'
-            backendAzureRmContainerName: '$(bkcontainer)'
-            backendAzureRmKey: '$(bkstrgkey)'
-        - task: TerraformTaskV3@3
-          inputs:
+         - task: TerraformTaskV3@3
+           displayName: init
+           inputs:
+             provider: 'azurerm'
+             command: 'init'
+             backendServiceArm: 'Visual Studio Enterprise Subscription-new(3)(8512a432-b466-4c66-8947-7f750e26c92d)'
+             backendAzureRmResourceGroupName: '$(bkstrgrg)'
+             backendAzureRmStorageAccountName: '$(bkstrg)'
+             backendAzureRmContainerName: '$(bkcontainer)'
+             backendAzureRmKey: '$(bkstrgkey)'
+         - task: TerraformTaskV3@3
+           inputs:
             provider: 'azurerm'
             command: 'plan'
             environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription-new(8512a432-b466-4c66-8947-7f750e26c92d)'
-        - task: TerraformTaskV3@3
-          displayname: apply
-          inputs:
+         - task: TerraformTaskV3@3
+           displayname: apply
+           inputs:
             provider: 'azurerm'
             command: 'apply'
             environmentServiceNameAzureRM: 'Visual Studio Enterprise Subscription-new(8512a432-b466-4c66-8947-7f750e26c92d)'
